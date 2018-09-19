@@ -2,6 +2,8 @@
 title: Linux Find命令
 date: 2018-08-22 09:53:58
 tags: Linux
+categories:
+- Linux
 ---
 
 # find 命令详解

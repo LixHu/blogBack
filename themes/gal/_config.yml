@@ -25,14 +25,14 @@ menu:
   - title: 分类
     icon: list
     url: categories
-    dropdown: 3 #dropdown为下拉菜单出现的项目最大数目(只限于tags和categorys)
+    dropdown:  #dropdown为下拉菜单出现的项目最大数目(只限于tags和categorys)
     # 如果不想显示下拉菜单, 则不要填写, 即dropdown:
     # 具体效果可以看https://myau.moe
   # tags
   - title: 标签
     icon: tags
     url: tags
-    dropdown: 3
+    dropdown:
   # about, 这个实际上是自定义page, 后面的自定义page参照about样式
   - title: 关于我
     icon: user
@@ -61,21 +61,19 @@ sidebar:
 
 # 友情链接配置, 要先开启上面的friend_links
 friend_links:
-  - name: KDays Forum
-    link: http://kdays.net/days/
-  - name: 绅士导航♂
-    link: http://www.gal123.com/
-  - name: 萌导航
-    link: http://www.moe123.com/
+  - name: yyl
+    link: https://cauyyl.github.io/
+  - name: 平头哥
+    link: http://www.flydogx64.cn/
+  - name:
+    link:
 
 # 个人链接配置, 要先开启上面的links
 links:
+  - name: Codding
+    link: https://liahu.coding.me
   - name: Github
-    link: https://github.com/ZEROKISEKI/
-  - name: Coding
-    link: https://coding.net/u/SORA1
-  - name: 知乎
-    link: https://www.zhihu.com/people/aonosora/activities
+    link: https://LixHu.github.io
 
 
 # 是否使用公告
@@ -127,23 +125,23 @@ power_mode:
 # 获取appId和appKey方法直接百度 or google(或者看这篇http://crescentmoon.info/2014/12/11/popular-widget/)
 # 注意一旦生成新的文章就不要随便改名了
 leancloud:
-  appid:  # your appId
-  appkey: # your appKey
+  appid: nWo2tPyGhNDEwFG62bMRVA55-gzGzoHsz # your appId
+  appkey: l4D3e5bVSaKqwwJxxV9I7SHS # your appKey
 
 # 评论系统, 目前只支持gitment(为了自定义样式)
 # 关于gitment如何配置看这篇 https://imsun.net/posts/gitment-introduction/
 # 如果不用的话要把下面的use_comment设置为false
 comment:
   gitment:
-      owner: # 必填项, 你的GitHub ID
-      repo: # 必填项  你的存储评论的repo
+      owner: LixHu # 必填项, 你的GitHub ID
+      repo: comment # 必填项  你的存储评论的repo
       oauth:
-        client_id:  # 必填项
-        client_secret: # 必填项
-        redirect_uri: # 可以填也可以不填
+        client_id: 80eddece9d709538c959  # 必填项
+        client_secret: 8d59c6f29d99ec20513f7f265403e6a30753a665 # 必填项
+        redirect_uri: https://liahu.coding.me # 可以填也可以不填
 
 # 是否使用评论系统
-use_comment: false
+use_comment: true
 
 node_sass:
   outputStyle: compressed

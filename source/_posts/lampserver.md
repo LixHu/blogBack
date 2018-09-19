@@ -2,6 +2,8 @@
 title: 阿里云服务器搭建LAMP 环境
 date: 2018-07-24 11:50:29
 tags: Linux
+categories:
+- Linux
 ---
 # 手动搭建LAMP 过程 
 
