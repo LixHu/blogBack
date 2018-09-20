@@ -1,7 +1,8 @@
 ---
 title: Mysql的单列索引和复合索引说明
 date: 2018-08-18 09:36:43
-tags: Mysql
+tags:
+- Mysql
 categories:
 - Mysql
 ---

@@ -1,7 +1,8 @@
 ---
 title: Linux Find命令
 date: 2018-08-22 09:53:58
-tags: Linux
+tags:
+- Linux
 categories:
 - Linux
 ---

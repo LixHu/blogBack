@@ -8,8 +8,10 @@ xs_bg_image: xsbg.gif
 
 # 必填, 个人头像, 如果是路径, 则指向source/imgs
 # 也可以填http:// OR https:// url地址
-author_image: avatar.jpg
+author_image: http://liahu.coding.me/imgs/header.gif
 
+tags: /tags
+categories: /categories
 # 导航菜单
 menu:
   # index
@@ -25,14 +27,14 @@ menu:
   - title: 分类
     icon: list
     url: categories
-    dropdown:  #dropdown为下拉菜单出现的项目最大数目(只限于tags和categorys)
+    dropdown:  4 #dropdown为下拉菜单出现的项目最大数目(只限于tags和categorys)
     # 如果不想显示下拉菜单, 则不要填写, 即dropdown:
     # 具体效果可以看https://myau.moe
   # tags
   - title: 标签
     icon: tags
     url: tags
-    dropdown:
+    dropdown: 4
   # about, 这个实际上是自定义page, 后面的自定义page参照about样式
   - title: 关于我
     icon: user
@@ -51,12 +53,12 @@ default_preview:
 
 # 侧边栏
 sidebar:
+  friend_links: true      # 友情链接, 默认开启
   recent_comments: true   # 最新评论, 默认关闭, 可能需要自己进行模板配置
   hot_posts: true         # 最热文章, 如果配置了下面的文章统计就可以使用该侧边栏, 否则设置为false
   recent_posts: true      # 最新文章, 默认开启
   random_posts: true      # 随机文章, 默认开启
   tags: true              # 热门标签, 默认开启
-  friend_links: true      # 友情链接, 默认开启
   links: true             # 个人链接, 默认开启
 
 # 友情链接配置, 要先开启上面的friend_links
