@@ -1,5 +1,5 @@
 ---
-title: WAMP 手动安装
+title: WNMP 手动安装
 date: 2018-12-22 16:16:59
 tags:
  - PHP
