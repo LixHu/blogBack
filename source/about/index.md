@@ -2,7 +2,7 @@
 date: 2018-07-24 11:50:29
 ---
 
-![关于我](/imgs/header.gif)
+![关于我](http://liahu.cauyyl.com/header.gif)
 
 - 刚刚搭建好博客，希望大家稀饭。
 - 联系我：

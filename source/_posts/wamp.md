@@ -3,7 +3,7 @@ title: WNMP 手动安装
 date: 2018-12-22 16:16:59
 tags:
  - PHP
- categories:
+categories: 
  - PHP
 ---
 ### 第一部分：准备工作.
