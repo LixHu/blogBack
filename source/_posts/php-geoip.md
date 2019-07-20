@@ -16,6 +16,18 @@ tags:
    # yum install GeoIP-devel
    # pecl install geoip
 ```
+
+> 或者手动下载包安装
+
+```
+   # wget https://pecl.php.net/get/geoip-1.1.1.tgz
+   # tar -zxvf geoip-1.1.1.tgz 
+   # cd geoip-1.1.1
+   # phpize
+   # .configure --with-php-config=php-config --with-geoip
+   # make && make install 
+```
+
 > 2. 然后把extension=geoip.so 加入php.ini 
 
 ### 测试geoIp
