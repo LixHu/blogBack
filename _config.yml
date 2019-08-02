@@ -98,6 +98,10 @@ jsonContent:
     date: true
     excerpt: true
     preview: true
+
+#toc
+toc:
+  maxdepth: 3
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
