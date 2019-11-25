@@ -1,14 +1,16 @@
 L2Dwidget.init({
     model: {
-        jsonPath: '/tororo/assets/tororo.model.json',
+        // jsonPath: '/tororo/assets/tororo.model.json',
+        // jsonPath: '/izumi/assets/izumi.model.json',
+        jsonPath: '/haru/02/assets/haru02.model.json',
     },
     display: {
         superSample: 2,
         width: 100,
         height: 100,
         position: 'left',
-        hOffset: 180,
-        vOffset: 460,
+        hOffset: 10,
+        vOffset: 510,
     },
     mobile: {
         show: true,
