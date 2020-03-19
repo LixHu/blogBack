@@ -13,7 +13,7 @@ tags:
 
 > 书写部分来源于[通俗易懂的php多线程](https://www.w3cschool.cn/php/php-thread.html) <span style="color:red">侵删</span> 后面我会整理下我的思路，现在部分思路来源于此文章
 
-### 一、 PHP模式实现单线程的三红方法
+### 一、 PHP模式实现单线程的三种方法
 
 1. linux下的PHP现成
 > 下面所讲的东西是源自php的pcntl_fork函数.方法说明来源于PHP官网：
