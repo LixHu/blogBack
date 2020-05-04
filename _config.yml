@@ -108,4 +108,4 @@ deploy:
   type: git
   repo:
     github: git@github.com:LixHu/LixHu.github.io.git,master
-    gitee: git@gitee.com:liahu/liahu.git,master
+#    gitee: git@gitee.com:liahu/liahu.git,master
