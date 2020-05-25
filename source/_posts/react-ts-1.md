@@ -15,8 +15,8 @@ tags:
 1. React
 2. Typescript
 3. React-router
-4. Redux
-5. fetch
+4. mobx
+5. axios
 6. sass
 7. ant-design
 
