@@ -1,0 +1,85 @@
+# 实现php替换模板字符串
+<?php
+// 替换字符串开始
+    $str = 'My name is {{ name }} and I am forever {{ age }}.';
+    $map = '{ "name": "Bill", "age": "21" }';
+    $ans = '';
+    echo $str.'<br/>';
+    echo $map.'<br/>';
+    replaceBetween($str, $map, $ans);
+    var_dump($ans);
+    function replaceBetween($str, $replace, &$ans, $open = '{', $close = '}'){
+        $map = json_decode($replace, true);
+        // init
+        if ($str[0] != $open && $str[1] != $close) {
+            $ans = $str[0];
+        }
+        for ($i = 1; $i < strlen($str) - 1; $i++) {
+            // find start position
+            if ($str[$i] == $open && $str[$i + 1] == $open) {
+                $start = $end = $i + 2;
+                // find end postion
+                while ($end <= strlen($str) && ($str[$end] != $close || $str[$end + 1] != $close))
+                    $end++;
+                if($str[$end] == $close && $str[$end + 1] == $close) {
+                    $substr = substr($str, $start, $end - $start);
+                    $substr = trim($substr);
+                    if(array_key_exists($substr, $map)) {
+                        $ans .= $map[$substr];
+                    }else {
+                        throw new ErrorException('key error');
+                    }
+                    $i = $end + 2;
+                }
+
+                // 如果没有找到这个部分，将后面的全部赋值 ans
+                if ($end == strlen($str) - 2) {
+                    while ($start < strlen($str)) {
+                        $ans .= $str[$start];
+                        $start++;
+                    }
+                    break;
+                }
+            }
+            $ans .= $str[$i];
+        }
+
+    }
+
+# 实现php验证json字符
+    // 验证json请求开始
+$payload = '{ "key1": "value1", "key2": "value2", "key3": "value3"}';
+$permitted_keys = ['key1', 'key2'];
+$mandatory_keys = ['key1'];
+var_dump(test($payload, $permitted_keys, $mandatory_keys));
+
+$payload = '{ "key2": "value2", "key3": "value3"}';
+$permitted_keys = ['key1', 'key2'];
+$mandatory_keys = ['key1'];
+var_dump(test($payload, $permitted_keys, $mandatory_keys));
+///**
+// * @param string $request_data json format
+// * @param array $permitted_keys  permitted_keys
+// * @param array $mandatory_keys mandator_keys
+// **/
+function test($payload, $permitted_keys, $mandatory_keys = [])
+{
+    $request_data = json_decode($payload, true);
+    try {
+        $return_array = [];
+        foreach ($permitted_keys as $key => $val) {
+            if (isset($request_data[$val])) {
+                $return_array[$val] = $request_data[$val];
+            }
+        }
+        foreach ($mandatory_keys as $k => $v) {
+            if (!isset($request_data[$v])) {
+                throw new Exception('catch key is not exist');
+            }
+        }
+        return $return_array;
+
+    } catch (Exception $e) {
+        throw new Exception($e);
+    }
+}
