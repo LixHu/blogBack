@@ -46,7 +46,7 @@ module.exports = {
     "lastUpdated": "最后更新于：",
     "author": "李寻欢",
     "authorAvatar": "/avatar.png",
-    "record": "xxxx",
+    "record": "",
     "startYear": "2018"
   },
   "markdown": {
