@@ -2,15 +2,14 @@
 home: true
 heroText: 李寻欢的博客
 tagline: 永远别放弃自己，哪怕所有人都放弃了你。
-# heroImage: /hero.png
-# heroImageStyle: {
-#   maxWidth: '600px',
-#   width: '100%',
-#   display: block,
-#   margin: '9rem auto 2rem',
-#   background: '#fff',
-#   borderRadius: '1rem',
-# }
+heroImage: /hero.png
+heroImageStyle: {
+   width: '100%',
+   display: block,
+   margin: '1rem auto 2rem',
+   background: '#fff',
+   borderRadius: '1rem',
+}
 bgImageStyle: {
   height: '450px'
 }

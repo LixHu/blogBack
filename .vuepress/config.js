@@ -13,14 +13,12 @@ module.exports = {
       { "text": "Home", "link": "/", "icon": "reco-home" },
       { "text": "时间轴", "link": "/timeline/", "icon": "reco-date" },
     ],
-    "sidebar": {
-      "/docs/theme-reco/": [
-        "",
-        "theme",
-        "plugin",
-        "api"
-      ]
-    },
+    subSidebar: 'auto',
+    // "sidebar": {
+    //   "/article/": [
+    //     ""
+    //   ]
+    // },
     "type": "blog",
     "blogConfig": {
       "category": { "location": 2, "text": "分类" },
