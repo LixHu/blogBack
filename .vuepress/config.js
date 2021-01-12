@@ -26,6 +26,11 @@ module.exports = {
       "category": { "location": 2, "text": "分类" },
       "tag": { "location": 3, "text": "标签" }
     },
+    valineConfig: {
+      appId: 'nWo2tPyGhNDEwFG62bMRVA55-gzGzoHsz',
+      appKey: 'l4D3e5bVSaKqwwJxxV9I7SHS',
+      placeholder: '别忘了输入完整的网址嗷~',
+    },
     "friendLink": [
       // {
       //   "title": "午后南杂",
