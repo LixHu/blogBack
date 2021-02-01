@@ -1,0 +1,17 @@
+#! /bin/sh
+
+VAR="new"
+COM=$1
+FILE=$2
+if [ "$COM" = "$VAR" ] && [ -n "$FILE" ] && [ ! -f "./article/$FILE.md" ]
+then
+    touch "./article/$FILE.md"
+    echo "创建成功"
+else
+  if [ ! -n "$FILE" ]
+  then
+    echo "没输入文件名"
+  else
+    echo "命令错误"
+  fi
+fi
