@@ -11,7 +11,7 @@ categories:
 
 一些基础的数据类型。变量类型还有条件语句和循环语句的内容我就不一一讲了。感觉都是些基础内容。
 
-# Go 环境安装
+## Go 环境安装
 
 ### windows下安装Go
 [Go安装包下载地址](https://golang.google.cn/dl/)
@@ -19,7 +19,7 @@ categories:
 ### Mac 下安装Go
 【待更新】
 
-# Go的面向对象
+## Go的面向对象
 
 Go并没有像Java，PHP那样的Class，所以Go的面向对象使用的是结构体。先声明一个结构体，如下：
 
@@ -105,5 +105,115 @@ func main() {
     }
 ```
 
-# 写一个Go程序吧
+## 写一个Go程序吧(我准备先写一个用MySQL的实例)
+
+野生小白过于自信，导致自己失败了，前面先整理下自己写的代码，然后后面看完interface和reflection再来接着搞，下面是我没看之前的代码：
+
+[github地址](https://github.com/LixHu/go-mysql)
+
+目录结构如下：
+```
+    ├── go
+    |├── sqlDriver
+    ||└── sqlDriver.go
+    |└── main.go
+```
+
+`sqlDriver.go`
+```go
+    package sqlDrvier
+
+import (
+	"database/sql"
+	"fmt"
+	_ "github.com/go-sql-driver/mysql"
+)
+
+type Driver struct {
+	Port     string
+	Host     string
+	User     string
+	Pass     string
+	Database string
+	Type     string
+}
+
+var db *sql.DB
+
+type Test struct {
+	id   int
+	test string
+}
+
+// 初始化
+func (d Driver) SetDriver(port string, host string, user string, pass string, database string, _type string) (dri *Driver) {
+	return &Driver{Port: port, Host: host, User: user, Pass: pass, Database: database, Type: _type}
+}
+
+func (d Driver) GetDriver() (dri Driver) {
+	return d
+}
+
+func (d Driver) connection() (err error) {
+	dsn := d.User + ":" + d.Pass + "@" + d.Type + "(" + d.Host + ":" + d.Port + ")/" + d.Database
+	db, err = sql.Open("mysql", dsn)
+	return err
+}
+
+func (d Driver) Select() (err error, row sql.Row) {
+	err = d.connection()
+	if err != nil {
+		return
+	}
+	rows, err := db.Query("select * from test")
+
+	defer db.Close()
+	if err != nil {
+		return
+	}
+
+	for rows.Next() {
+		var t Test
+		err1 := rows.Scan(&t.id, &t.test)
+		if err1 != nil {
+			return
+		}
+		fmt.Println(t)
+	}
+	return err, row
+}
+```
+
+`main.go`
+
+```go
+package main
+
+import (
+	"./sqlDriver"
+)
+
+func main() {
+	var (
+		host     string
+		user     string
+		port     string
+		_type    string
+		database string
+		pass     string
+	)
+	host = "127.0.0.1"
+	user = "root"
+	port = "3306"
+	_type = "tcp"
+	database = "test"
+	pass = "root"
+	d := sqlDrvier.Driver{}.SetDriver(port, host, user, pass, database, _type)
+	d.Select()
+}
+
+```
+
+反正总之还是没完全学会，接着学习去！
+
 【待更新】
