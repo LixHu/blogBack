@@ -1,6 +1,6 @@
 ---
 title: docker安装LNMP环境
-date: 2021-08-09-14:50:29
+date: 2021-08-09 14:50:29
 tags:
 - docker
 categories:
@@ -41,7 +41,7 @@ yum install docker-ce
 添加国内镜像加速，在这边用的是阿里云的镜像加速,下面是配置教程
 1. 到阿里云获取镜像地址
     登录阿里云控制台-容器镜像服务-镜像工具-镜像加速器 到此处获取镜像地址，这边因为每个人的不通，我自己打码了
-   ![镜像服务1](http://qn.lixhuan.com/lnmp-docker1.png)
+   ![镜像服务1](https://qiniu.lixhuan.com/lnmp-docker1.png)
 2. 然后根据下面提供的步骤依次执行代码
 ```
     sudo mkdir -p /etc/docker
