@@ -1,3 +1,5 @@
+#! /bin/sh
+
 npm run build
 
 cd ./public

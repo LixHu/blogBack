@@ -6,6 +6,12 @@ FILE=$2
 if [ "$COM" = "$VAR" ] && [ -n "$FILE" ] && [ ! -f "./article/$FILE.md" ]
 then
     touch "./article/$FILE.md"
+    echo "---\n
+title: \n
+date: $(date "+%Y-%m-%d-%H:%M:%S")\n
+tags:\n
+categories:\n
+---" > "./article/$FILE.md"
     echo "创建成功"
 else
   if [ ! -n "$FILE" ]
