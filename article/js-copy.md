@@ -1,65 +1,158 @@
 ---
 title: JS数组浅拷贝和深拷贝
-date: 2019-06-05 10:30:46
+date: 2021-09-09 23:59:59
 tags:
 - JavaScript
 categories:
 - JavaScript
 ---
 
-##### JS数组浅拷贝和深拷贝
+> 今天过来重新整理一下这篇文章。接来来会对深拷贝和浅拷贝都进行分析。让自己更深入的理解这块。
 
-> javascript 在数组使用中，时常会遇到数组备份的情况，之后对数组做些修改，再同原数组比较，查看数组变化，这里就涉及到一个数组拷贝问题
-> 浅拷贝只一层对象的属性，深拷贝递归复制了所有层级
-> 数组的拷贝，通常可以使用一个新的数组，指向现有数组
+### 简介
 
-> 浅拷贝：
-> 通常使用concat 和 slice 方法返回一个新数组的特性来实现拷贝
+    深拷贝和浅拷贝，简单来说，就是当B复制了A，当修改A时，如果B也变了，说明是浅拷贝，如果B没变，就是深拷贝。
 
-```
-    var arr = [ 'str', 1, true, null, undefined ];
-    var new_arr = arr.concat();  // arr.slice();
-    new_arr[0] = 'newstr';   // 操作new_arr 不会影响arr 的值
-    console.log(arr);
-    console.log(new_arr);
-```
-
-> 深拷贝：
-> 深拷贝就是指完全的拷贝一个对象，即使嵌套了对象，两者也相互分离，修改一个对象的属性，也不会影响另一个
-
-> 技巧1： 不仅可拷贝数组还能拷贝对象（但不能拷贝函数）
+### 浅拷贝
+    
+    先写个方法来实现浅拷贝一句功能数据展示
 
 ```
-    var arr = [ 'str', 1, true, null, [ 'str', 'newstr' ], { str: 'str' } ];
-    var new_arr = JSON.parse(JSON.stringify(arr));
-    console.log(new_arr);
+    let a = [0, 1, 2, 3, 4], 
+    b = a;
+    console.log(a, b);
+    a[0] = 1;
+    console.log(a, b);
 ```
 
-> 浅拷贝通用方法： 实现思路： 遍历对象，把属性和属性值都放在一个新的对象里。
+    接下来看一下控制台的效果
 
-```
-    function shallowCopy(obj) {
-        // 只拷贝对象
-        if(typeof obj !== 'object') return;
-        // 根据类型新建一个对象或者数组
-        var newObj = obj instanceof Array ? [] : {};
-        for(var key in obj) {
-            if(obj.hasOwnProperty(key)) {
-                newObj[key] = obj[key];
-            }
-        }
-    }
-```
+![copy-1](https://lixhuan.com/upload/copy-1.jpg)
 
-> 深拷贝通用方法：实现思路： 拷贝时判断属性值类型，如果是对象，继续递归调用深拷贝函数
+    b 复制了a， 修改了a， 数组b也跟着发生了变化，这就是浅拷贝
 
-```
-    function deepCopy(obj) {
-        if(typeof obj !== 'object') return;
+>    深入研究一下浅拷贝
+    
+    这个涉及到了基本数据类型和引用类型的概念了。
+    基本数据类型：number，string, boolean, null, undefined 等，
+    引用数据类型： Object类，有常规名值对的无序对象，以及函数等。
+    
+    两种数据类型的存储方式在内存中表现如下。
+
+
+### 基本类型：
+        
+名值存放在栈内存中，例如 let a = 1;
+
+| 栈内存  |  |
+| ---- | ---- |
+| 名 | 值 |
+|  a | 1 |
+
+当复制了 b = a 时，栈内存会开辟一个新的内存：
+
+| 栈内存  |  |
+| :----: | :----: |
+| 名 | 值 |
+| a | 1 |
+| b | 1 |
+
+所以此时你修改a = 2 时，对b不受影响。当然，在let a = 1, b = a;虽然b不受影响
+，但这也算不上深拷贝，因为深拷贝本身只针对较为复杂的对象类型的数据。
+    
+
+### 引用类型：
+
+名存在栈内存中，值存放在堆内存中，但是栈内存会提供一个引用地址指向堆内存中的值。
+
+
+| 栈内存   |        | 堆内存 |          |
+| :----:  | :----: | ----  |    ----  |
+| 名      | 值      |  地址  |   val   |
+| a       | 堆地址1 |  地址1 |  [0, 1, 3, 4, 5] |
+
+之后进行b = a 进行拷贝时，其实就是复制a的引用地址
+
+| 栈内存   |        | 堆内存 |          |
+| :----:  | :----: | ----  |    ----  |
+| 名      | 值      |  地址  |   val   |
+| a       | 地址1 |  地址1 |  [0, 1, 3, 4, 5] |
+| b       | 地址1 |       |          |
+
+当我们进行a[1] = 3修改时由于a和b指向通一个地址，所以自然b也受影响，这就是浅拷贝。
+
+| 栈内存   |        | 堆内存 |          |
+| :----:  | :----: | ----  |    ----  |
+| 名      | 值      |  地址  |   val   |
+| a       | 地址1 |  地址1 |  [0, 3, 3, 4, 5] |
+| b       | 地址1 |       |          |
+
+深拷贝实现逻辑就是在堆内存中开一个新的内存为b放值，就像基本类型那样。
+
+
+| 栈内存   |        | 堆内存 |          |
+| :----:  | :----: | ----  |    ----  |
+| 名      | 值      |  地址  |   val   |
+| a       | 地址1 |  地址1 |  [0, 1, 3, 4, 5] |
+| b       | 地址2 |  地址2 |  [0, 1, 3, 4, 5] |
+
+### 深拷贝
+
+首先实现一个深拷贝的函数
+
+```javascript
+function deepclone(obj) {
+    let cloneObj = Array.isArray(obj) ? [] : {};
+    if(obj && typeof obj === 'object') {
         for(key in obj) {
             if(obj.hasOwnProperty(key)) {
-                newObj[key] = typeof obj[key] == 'object' ? deepCopy(obj[key]): obj[key];
+                if(obj[key] && typeof obj[key] == 'object') {
+                    cloneObj[key] = deepclone(obj[key]);
+                }else {
+                    cloneObj[key] = obj[key];
+                }
             }
         }
     }
+    return cloneObj;
+}
+
+let a = [0, 1, 2, 3],
+    b = deepclone(a);
+a[0] = 3;
+console.log(a, b);
 ```
+
+运行效果如下图
+
+![深拷贝1](https://lixhuan.com/upload/copy_2.jpg)
+
+可以看出，a的修改不会影响b的变化，也就是说b脱离了a的控制，不再受a的影响
+
+深拷贝，是拷贝对象各个层级的属性。
+
+
+除了递归，还可以使用JSON对象的parse 和 stringify 方法
+
+```javascript
+function deepClone(obj){
+    let _obj = JSON.stringify(obj),
+        objClone = JSON.parse(_obj);
+    return objClone
+}    
+let a = [0,1,[2,3],4],
+    b = deepClone(a);
+a[0] = 1;
+a[2][0] = 1;
+console.log(a,b);
+```
+
+效果如下图：
+
+![深拷贝1](https://lixhuan.com/upload/copy_3.jpg)
+
+### 总结
+
+说了这么多，了解深拷贝也不仅仅是为了应付面试题，
+在实际开发中也是非常有用的。例如后台返回了一堆数据，你需要对这堆数据做操作，但多人开发情况下，
+你是没办法明确这堆数据是否有其它功能也需要使用，直接修改可能会造成隐性问题，深拷贝能帮你更安全安心的去操作数据，根据实际情况来使用深拷贝，大概就是这个意思。
