@@ -2,64 +2,137 @@
 
 title: Vue3使用G6自定义节点问题整理
 
-date: 2022-01-06-16:42:34
+date: 2022-01-06 16:42:34
 
 tags:
+
 - Vue
 
 categories:
+
 - Vue
 
 ---
 
 # 前言
-    
- 最近在开发关系图，拓扑图等应用，所以用到了Antv G6模块，遇到自定义节点的问题，这边整理一下碰到的问题以及解决方案。以及针对文档上面group的整理。
 
- 其实文档上面有对group这个参数做介绍,找起来比较麻烦。这边整理一下，以及对应的设置。 这边ts的类型自己定义，我这边就不定义ts类型了。
+最近在开发关系图，拓扑图等应用，所以用到了Antv G6模块，遇到自定义节点的问题，这边整理一下碰到的问题以及解决方案。以及针对文档上面group的整理。
 
-### 1. 自定义节点相关
+其实文档上面有对group这个参数做介绍,找起来比较麻烦。这边整理一下，以及对应的设置。 这边ts的类型自己定义，我这边就不定义ts类型了。
+
+### 自定义节点
 
 G6文档上面有说明，自定义节点的方法如下：
+
 ```javascript
+  // 方法说明： registerNode(节点名称,配置项,继承的节点名称)
     G6.registerNode('nodeName', options, extendedNodeName)
 ```
+
 也就是说，可以扩展某个内置节点，或者从无到有绘制一个节点。
 
+##### 扩展节点
 扩展一个节点的话，这边以扩展rect内置节点为例，添加一个describe属性，放到label标签下面，方法如下：
 
 ```javascript
     G6.registerNode('rect-desc', {
-        afterDraw(cfg, group) {
-            const shape = group.get('children')[1]
-            shape.attr({
-                x: 0,
-                y: -10,
-            })
-            if(cfg.describe) {
-                return group.addShape('text', {
-                    attrs: {
-                        x: 0,
-                        y: 10,
-                        textAlign: 'center',
-                        textBaseline: 'middle',
-                        text: cfg.describe,
-                        fill: '#000',
-                    },
-                    name: 'desc-shape',
-                    draggable: true,
-                })
-            }
-        }    
-    }, 'rect')
+  afterDraw(cfg, group) {
+    const shape = group.get('children')[1]
+    shape.attr({
+      x: 0,
+      y: -10,
+    })
+    if (cfg.describe) {
+      return group.addShape('text', {
+        attrs: {
+          x: 0,
+          y: 10,
+          textAlign: 'center',
+          textBaseline: 'middle',
+          text: cfg.describe,
+          fill: '#000',
+        },
+        name: 'desc-shape',
+        draggable: true,
+      })
+    }
+  }
+}, 'rect')
 ```
+
 这边有很多个问题，我为什么不直接使用draw方法来创建，因为使用draw直接重写了rect的draw方法，一些rect基本的属性都会失效，包括锚点，路径等。
 afterDraw 是在rect绘制之后进行添加，这边就使用了afterDraw方法来实现这个逻辑。
+
 
 使用`group.get`获取元素，并针对该元素进行对应的修改。文章后有介绍。
 
 这边使用了`group.addShape`这个方法来进行新增一个shape, 方法在文档中有进行介绍。
+##### 8.20更新,update扩展节点问题
 
+因自定义节点可能会涉及到更新问题，所以自定义节点的时候，需要加上update属性，直接使用上面的方法，新增update方法。
+
+```javascript
+
+G6.registerNode('rect-desc', {
+  afterDraw(cfg, group) {
+    // 绘制之后重写部分方法
+    const shape = group.get('children')[1]
+    shape.attr({
+      x: 0,
+      y: -10,
+    })
+    if (cfg.describe) {
+      return group.addShape('text', {
+        attrs: {
+          x: 0,
+          y: 10,
+          textAlign: 'center',
+          textBaseline: 'middle',
+          text: cfg.describe,
+          fill: '#000',
+        },
+        name: 'desc-shape',
+        draggable: true,
+      })
+    }
+  },
+  update(cfg, node) {
+     // 当节点更新时，重新修改当前组件的内容
+    const group = node.getContainer()
+    const shape = group.get('children')[1]
+    shape.attr({
+      x: 0,
+      y: -25
+    })
+    if (cfg.describe !== undefined) {
+      const child = group.find((ele) => ele.get('name') === 'desc-shape')   // 因为新增的描述属性，这边更新的话需要先删除再新增。
+      group.removeChild(child)
+      return group.addShape('text', {
+        attrs: {
+          x: 0,
+          y: 10,
+          textAlign: 'center',
+          textBaseline: 'middle',
+          text: cfg.describe,
+          fill: '#000',
+        },
+        name: 'desc-shape',
+        draggable: true,
+      })
+    } 
+  }
+}, 'rect')
+```
+
+然后使用updateItem方法，来更新当前节点，如：
+```javascript
+const node = {
+  describe: 'test test',
+  label: '测试'
+}
+graph.updateItem('node', node)
+```
+#### 从无到有绘制一个节点
 从无到有就引用官方的一个实例，新增一个节点，包括锚点、路径等内容都需要重新自己配置。
 
 ```javascript
@@ -139,8 +212,8 @@ group.get('children')
 ```javascript
 const shape = group.get('children')[1]
 shape.attr({
-    x: 0,
-    y: -10
+  x: 0,
+  y: -10
 })
 ```
 

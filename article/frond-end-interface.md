@@ -5,10 +5,12 @@ title: 前端面试总结
 date: 2021-09-07-20:48:48
 
 tags:
-- 前端
+- JavaScript
+- 面试
 
 categories:
-- 前端
+- JavaScript
+- 面试
 
 ---
 

@@ -8,6 +8,6 @@ tags:
 - Javascript
 
 categories:
-- Webpack
+- Javascript
 ---
 

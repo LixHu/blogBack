@@ -1,6 +1,7 @@
 <template>
   <div class="footer-wrapper">
     <Comments :isShowComments="false"/>
+    <a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2021019000号-1</a>
   </div>
 </template>
 

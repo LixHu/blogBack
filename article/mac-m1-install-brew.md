@@ -3,10 +3,8 @@ title: 记录Mac Pro M1芯片安装HomeBrew的过程吧
 date: 2021-01-09 13:43:39
 tags:
 - Mac
-- 环境安装
 categories:
 - Mac
-- 环境安装
 ---
 
 ### 简介

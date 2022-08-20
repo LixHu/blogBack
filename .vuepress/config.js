@@ -25,29 +25,23 @@ module.exports = {
       "tag": { "location": 3, "text": "标签" }
     },
     "valineConfig": {
-      "appId": 'nWo2tPyGhNDEwFG62bMRVA55-gzGzoHsz',
-      "appKey": 'l4D3e5bVSaKqwwJxxV9I7SHS',
+      "appId": 'IMpmm8GQ9lP95zvxWDEXp8y3-gzGzoHsz',
+      "appKey": 'rGhNta5tOYJ3YJpiHnMbd4fu',
       "placeholder": '别忘了输入完整的网址嗷~',
     },
     "friendLink": [
-      // {
-      //   "title": "午后南杂",
-      //   "desc": "Enjoy when you can, and endure when you must.",
-      //   "email": "1156743527@qq.com",
-      //   "link": "https://www.recoluan.com"
-      // },
-      // {
-      //   "title": "vuepress-theme-reco",
-      //   "desc": "A simple and beautiful vuepress Blog & Doc theme.",
-      //   "avatar": "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
-      //   "link": "https://vuepress-theme-reco.recoluan.com"
-      // }
+      {
+        "title": "杰克 上海-豪情",
+        "desc": "某公司前端大佬，精通前端React，Vue等框架。",
+        "email": "",
+        "link": "http://milu.blog/"
+      }
     ],
     "logo": "/logo.png",
     "search": true,
     "searchMaxSuggestions": 10,
     "lastUpdated": "最后更新于：",
-    "author": "李寻欢",
+    "author": "lixhuan",
     "authorAvatar": "/avatar.png",
     "record": "",
     "startYear": "2018"

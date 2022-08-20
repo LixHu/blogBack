@@ -2,11 +2,9 @@
 title: android studio 打包之后手机安装不上问题
 date: 2020-09-04 09:57:45
 tags:
-- android
-- uni-app
+- uniApp
 categories:
-- android
-- uni-app
+- uniApp
 ---
 
 > Android打包之后使用adb安装apk文件时报错信息如下：

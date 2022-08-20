@@ -7,7 +7,7 @@ date: 2021-11-16-09:50:19
 tags:
 - JavaScript
 categories:
-- Webpack
+- JavaScript
 
 ---
 

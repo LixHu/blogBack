@@ -3,12 +3,8 @@ title: Qt Quick 学习之路-1
 date: 2019-08-03 19:36:40
 tags:
 - Qt
-- C++
-- Qml
 categories:
 - Qt
-- C++
-- Qml
 ---
 
 > 最近突然看到想做一个自己的App，然后看到了Qt不错~ 然后就学了一下~ C++基础有点差，看着有点吃力，没办法，先看下，后期有用~ emmm
