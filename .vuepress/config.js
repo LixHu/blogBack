@@ -31,11 +31,17 @@ module.exports = {
     },
     "friendLink": [
       {
-        "title": "杰克 上海-豪情",
+        "title": "杰克-一个专心搬砖的人",
         "desc": "某公司前端大佬，精通前端React，Vue等框架。",
         "email": "",
         "link": "http://milu.blog/"
-      }
+      },
+      {
+        "title": "小白龙博客",
+        "desc": "小白龙博客",
+        "email": "",
+        "link": "https://blog.xiaolong0418.com/"
+      },
     ],
     "logo": "/logo.png",
     "search": true,

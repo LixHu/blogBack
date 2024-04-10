@@ -195,7 +195,7 @@ G6.registerNode('diamond', {
 上面使用的是G6官方文档中绘制的节点，因为是新建节点，所以使用draw方法，来绘制一个新的节点。path 也就是路径，在getPah中有体现是怎么来绘制的。
 总之，会创建一个图形分组，也就是group，对应节点中图形对象容器。
 
-### 2.group方法介绍
+### group方法介绍
 
 文档中有各个方法介绍，这边只介绍几个在使用中遇到的问题，文档中group对象的介绍地址[group对象介绍地址](https://g6.antv.vision/zh/docs/api/Group)
 
@@ -222,3 +222,14 @@ shape.attr({
 
 
 
+
+
+
+### 遇到的问题以及处理方法
+
+1. 涉及外层transform，节点位置和鼠标位置不一致的问题
+
+需要给canvas设置一下适配css的transform
+```javascript
+    graph.get('canvas').set('supportCSSTransform', true)
+```
