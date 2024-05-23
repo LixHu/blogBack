@@ -8,7 +8,7 @@ then
     touch "./article/$FILE.md"
     echo "---\n
 title: \n
-date: $(date "+%Y-%m-%d-%H:%M:%S")\n
+date: $(date "+%Y-%m-%d %H:%M:%S")\n
 tags:\n
 categories:\n
 ---" > "./article/$FILE.md"
