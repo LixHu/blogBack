@@ -5,10 +5,10 @@ title: uniapp中app端流式请求解决方法
 date: 2025-05-22 16:24:12
 
 tags:
-- uniapp
+- uniApp
 
 categories:
-- unapp
+- uniApp
 
 ---
 
@@ -26,9 +26,6 @@ categories:
 	export default {
 		mounted() {
             data = this.data
-			if (msg) {
-				this.sendMessage(msg)
-			}
 			const script = document.createElement('script')
 			// 导入路径是根据根目录路径算的，因为renderjs 是在视图层
 			script.src = 'static/fetch.js'
