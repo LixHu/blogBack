@@ -25,7 +25,6 @@ categories:
    - 组件化通信不同，react中通过使用回调函数来进行通信的，而Vue中子组件向父组件传递消息有两种方式：事件和回调函数
    - diff算法不同。react主要使用diff队列保存哪些要更新的DOM，得到Patch树，再统一操作批量更新DOM，vue使用的是双向指针，边对比，边更新dom。
 
-
 ### 2.Vue和React的生命周期：
 
 Vue的生命周期：
@@ -107,8 +106,6 @@ vue3:
 双端对比算法及静态标记。
 头和头比，尾和尾比，基于最长递增子序列进行移动添加删除。
 
-
-
 ## React框架
 
 ### 1. 常用的hook
@@ -148,7 +145,6 @@ VirtualDOM: 虚拟DOM，本质上是JavaScript对象存在的形式对DOM的描�
 - 虚拟DOM的缺点：
     - 在一些性能要求极高的应用中使用虚拟DOM无法进行针对性的极致优化。
     - 首次渲染大量DOM时，由于多了一些虚拟DOM的计算，速度比正常稍慢。
-
 
 ## JavaScript基础
 
@@ -295,6 +291,15 @@ css中的box-sizing 属性定义了应该如何计算一个元素的总宽高。
 - absolute：元素相对于最近的已定位的父元素进行定位。
 - fixed：元素相对于浏览器窗口进行定位。
 
+## TypeScript
+
+### interface 和type的区别，定义类型时如何选择
+
+- interface 可多次声明合并，type一旦声明无法修改
+- type可表示基本类型，联合类型交叉类型等。interface只能定义对象、函数类型
+- interface可继承其他接口，type需要使用交叉类型来实现
+
+定义对象、类结构时候使用interface，便于扩展和继承，需要联合类型、交叉类型或者基本类型使用type
 
 ## HTTP系列
 
@@ -309,7 +314,6 @@ css中的box-sizing 属性定义了应该如何计算一个元素的总宽高。
 4. HTTPS需要SSL/TLS证书，需要购买证书，或者使用自签名证书。
 
 ### 2. UDP 和 TCP
-
 
 ## ThreeJS & WebGL & Canvas ==
 
